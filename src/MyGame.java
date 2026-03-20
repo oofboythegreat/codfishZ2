@@ -24,7 +24,7 @@ public class MyGame extends ApplicationAdapter {
         //         starting Y-coordinates and add them to activeObjects.
         int startingY = 100;
         for(int i = 0; i < 5; i++){
-            activeObjects.add(new Enemy(400, startingY + (60 * i), 50, 50, "assets\\fish_pink.png"));
+            activeObjects.add(new Enemy(400, startingY + (60 * i), 50, 50, "assets\\red-dot.png"));
         }
     }
 
