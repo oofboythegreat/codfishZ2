@@ -4,9 +4,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 
+
 public class MyGame extends ApplicationAdapter {
     private SpriteBatch batch;
     private ArrayList<GameObject> activeObjects;
+    private Player player;
 
     @Override
     public void create() {
@@ -15,10 +17,15 @@ public class MyGame extends ApplicationAdapter {
 
         // TODO 3: Instantiate your Player subclass and add it to activeObjects.
 
+        player = new Player(0, 0);
+        activeObjects.add(player);
 
         // TODO 4: Write a for-loop to instantiate 5 Enemy objects at different 
         //         starting Y-coordinates and add them to activeObjects.
-        
+        int startingY = 100;
+        for(int i = 0; i < 5; i++){
+            activeObjects.add(new Enemy(400, startingY + (60 * i), 50, 50, "assets\\fish_pink.png"));
+        }
     }
 
     //render() is the game loop, called approx 60 times per second
@@ -37,10 +44,17 @@ public class MyGame extends ApplicationAdapter {
         // TODO 5: Write a standard or enhanced for-loop to iterate through activeObjects.
         // For each object, call its move() method.
 
+        for(GameObject game : activeObjects){
+            game.move(deltaTime);
+        }
+
         
         //Note: Anything drawn must be between .begin() and .end()
         batch.begin();
         // TODO 6: Write a loop to iterate through activeObjects and call draw(batch).
+        for(GameObject game : activeObjects){
+            game.draw(batch);
+        }
 
 
         batch.end();
@@ -51,6 +65,14 @@ public class MyGame extends ApplicationAdapter {
         // See the cheat sheet for the overlap method!
         // NOTE: If you are removing items from an ArrayList, how must you structure 
         // your for-loop to avoid skipping elements?
+
+        for(int i = activeObjects.size() - 1; i >= 0; i--){
+            if(activeObjects.get(i) instanceof Enemy){
+                if(player.getHibox().overlaps(activeObjects.get(i).getHibox())){
+                    activeObjects.remove(i);
+                } 
+            }
+        }
 
     }
     
