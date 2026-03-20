@@ -1,13 +1,13 @@
-# [Insert Your Game Title Here]
+# CodFish Zombies 2: return of the koi
 
-**Developers:** [Your Name] and [Partner's Name]
+**Developer:** Benjamin du Preez
 **Date:** [Month, Year]
 **Course:** AP Computer Science A 
 
 ---
 
 ## 🎮 Game Description
-[Write a 2-3 sentence pitch for your game. What is the goal? What is the core mechanic? E.g., "Space Defender is a 2D top-down shooter where the player must protect their home planet from endless waves of incoming asteroids. Survive as long as you can to get the high score!"]
+Fight back against the crabs again, as well as their creaters: the koi fish
 
 ## 🕹️ Controls
 * **[W, A, S, D]** or **[Arrow Keys]**: Move the player.
