@@ -10,6 +10,7 @@ public class Enemy extends GameObject {
     public Enemy(int x, int y, int width, int height, String imagePath){
         super(x, y, width, height, imagePath);
     }
+<<<<<<< HEAD
     
     public void setAgro(boolean agro){
         this.agro = agro;
@@ -49,4 +50,6 @@ public class Enemy extends GameObject {
         setX(getX() + randX* deltaTime);
         setY(getY() - randY* deltaTime);
     }
+=======
+>>>>>>> fb9a515cccb0b83500ad23f6ed87e9018449458a
 }
