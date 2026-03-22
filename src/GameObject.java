@@ -7,8 +7,14 @@ public class GameObject {
     private double x;
     private double y;
     private boolean agro;
+    private int time = 0;
    
-
+    public void setTime(int t){
+        time = t;
+    }
+    public int getTime(){
+        return time;
+    }
     private int width;
     private int height;
     private Texture image;
@@ -86,4 +92,6 @@ public class GameObject {
     public void setAgro(boolean agro){
         this.agro = agro;
     }
+
+    
 }

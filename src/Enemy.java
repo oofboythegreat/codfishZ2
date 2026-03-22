@@ -6,11 +6,12 @@ public class Enemy extends GameObject {
     private double speed = 100;
     private int IQ = 1;
     private boolean agro = false;
+    private int time = 0;
 
     public Enemy(int x, int y, int width, int height, String imagePath){
         super(x, y, width, height, imagePath);
     }
-<<<<<<< HEAD
+
     
     public void setAgro(boolean agro){
         this.agro = agro;
@@ -21,10 +22,17 @@ public class Enemy extends GameObject {
         return agro;
     }
 
+    public int getTime(){
+        return time;
+    }
+    public void setTime(int t){
+        time = t;
+    }
+
     @Override
     public void move(double deltaTime, double targetX, double targetY, GameObject player){
         //double distance = Math.sqrt(Math.pow(Math.abs(targetY-getY()), 2.0)+Math.pow(Math.abs(targetX-getX()), 2.0));
-        if(getDistance(player) < 100*IQ || agro){
+        if(getDistance(player) < 200*IQ || agro){
             agro = true;
             setImage("assets\\\\red-dot.png");
             double smart = Math.random()*10*IQ;
@@ -47,9 +55,9 @@ public class Enemy extends GameObject {
         }
         double randX = Math.random()*speed*2 - speed;
         double randY = Math.random()*speed*2 - speed;
-        setX(getX() + randX* deltaTime);
-        setY(getY() - randY* deltaTime);
+        if(agro){
+            setX(getX() + randX* deltaTime);
+            setY(getY() - randY* deltaTime);
+        }
     }
-=======
->>>>>>> fb9a515cccb0b83500ad23f6ed87e9018449458a
 }

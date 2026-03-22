@@ -17,7 +17,7 @@ public class Launcher
         configuration.setTitle("Game Dev");
 
         //Set window size
-        configuration.setWindowedMode(800, 500);
+        configuration.setWindowedMode(800, 800);
 
         //Set window icon
         configuration.setWindowIcon("assets/libgdx128.png", "assets/libgdx64.png", "assets/libgdx32.png", "assets/libgdx16.png");

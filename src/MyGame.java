@@ -25,12 +25,12 @@ public class MyGame extends ApplicationAdapter {
         //         starting Y-coordinates and add them to activeObjects.
         int startingY = 100;
         for(int i = 0; i < 5; i++){
-            activeObjects.add(new Enemy(100, startingY + (60 * i), 50, 50, "assets\\dot.png"));
+            activeObjects.add(new Enemy((int)(Math.random()*800), (int)(Math.random()*800), 50, 50, "assets\\dot.png"));
         }
     }
 
     //render() is the game loop, called approx 60 times per second
-    
+
     @Override
     public void render() {
     
@@ -76,14 +76,18 @@ public class MyGame extends ApplicationAdapter {
                     if(activeObjects.get(b) instanceof Enemy){
                         if(activeObjects.get(i).getDistance(activeObjects.get(b))<200){
                             if(activeObjects.get(b).getAgro()){
-                                
-                                activeObjects.get(i).setAgro(true);
+                                activeObjects.get(i).setTime(activeObjects.get(i).getTime()+1);
+                                if(activeObjects.get(i).getTime() == 100 ){
+                                    activeObjects.get(i).setAgro(true);
+                                    activeObjects.get(i).setTime(0);
+                                }
                             }
                         }
                     }
                 }
                 if(player.getHibox().overlaps(activeObjects.get(i).getHibox())){
                     activeObjects.remove(i);
+                    activeObjects.add(new Enemy((int)(Math.random()*800), (int)(Math.random()*800), 50, 50, "assets\\dot.png"));
                 } 
             }
         }
