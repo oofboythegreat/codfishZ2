@@ -3,6 +3,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 public class MyGame extends ApplicationAdapter {
@@ -24,13 +25,15 @@ public class MyGame extends ApplicationAdapter {
         //         starting Y-coordinates and add them to activeObjects.
         int startingY = 100;
         for(int i = 0; i < 5; i++){
-            activeObjects.add(new Enemy(400, startingY + (60 * i), 50, 50, "assets\\red-dot.png"));
+            activeObjects.add(new Enemy(100, startingY + (60 * i), 50, 50, "assets\\dot.png"));
         }
     }
 
     //render() is the game loop, called approx 60 times per second
+    
     @Override
     public void render() {
+    
         // Boilerplate: Clear the screen to black each frame
         Gdx.gl.glClearColor(.25f, .25f, .25f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -68,6 +71,17 @@ public class MyGame extends ApplicationAdapter {
 
         for(int i = activeObjects.size() - 1; i >= 0; i--){
             if(activeObjects.get(i) instanceof Enemy){
+                activeObjects.get(i).move(deltaTime, player.getX(), player.getY(), player);
+                for(int b = activeObjects.size() - 1; b >= 0; b--){
+                    if(activeObjects.get(b) instanceof Enemy){
+                        if(activeObjects.get(i).getDistance(activeObjects.get(b))<200){
+                            if(activeObjects.get(b).getAgro()){
+                                
+                                activeObjects.get(i).setAgro(true);
+                            }
+                        }
+                    }
+                }
                 if(player.getHibox().overlaps(activeObjects.get(i).getHibox())){
                     activeObjects.remove(i);
                 } 

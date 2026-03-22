@@ -6,6 +6,7 @@ public class GameObject {
     // AP Standard: private instance variables
     private double x;
     private double y;
+    private boolean agro;
    
 
     private int width;
@@ -37,6 +38,10 @@ public class GameObject {
     public Rectangle getHibox(){
         return hitbox;
     }
+
+    public double getDistance(GameObject a){
+        return Math.sqrt(Math.pow(Math.abs(getY()-a.getY()), 2.0)+Math.pow(Math.abs(getX()-a.getX()), 2.0));
+    }
     
 
     // TODO 2: Write setter methods for x and y. 
@@ -52,6 +57,10 @@ public class GameObject {
         hitbox.setPosition((int) x, (int) y);
     }
 
+    public void setImage(String imagePath){
+        this.image = new Texture(imagePath);
+    }
+
     /**
      * Draws the object to the screen. 
      */
@@ -65,5 +74,16 @@ public class GameObject {
      */
     public void move(double deltaTime) {
         // Leave blank for subclasses to override!
+    }
+    public void move(double deltaTime, double targetX, double targetY, GameObject player) {
+        // Leave blank for subclasses to override!
+    }
+
+    public boolean getAgro(){
+        return agro;
+    }
+
+    public void setAgro(boolean agro){
+        this.agro = agro;
     }
 }

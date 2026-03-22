@@ -6,7 +6,7 @@ public class Player extends GameObject {
     private int speed = 200;
     
     public Player(double x, double y){
-        super(x, y, 50, 50, "assets\\dot.png");
+        super(x, y, 50, 50, "assets\\fish.png");
     }
 
     @Override
