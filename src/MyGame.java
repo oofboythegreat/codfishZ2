@@ -1,6 +1,7 @@
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -10,6 +11,7 @@ public class MyGame extends ApplicationAdapter {
     private SpriteBatch batch;
     private ArrayList<GameObject> activeObjects;
     private Player player;
+    private Texture china;
 
     @Override
     public void create() {
@@ -20,6 +22,8 @@ public class MyGame extends ApplicationAdapter {
 
         player = new Player(0, 0);
         activeObjects.add(player);
+        china = new Texture("assets\\china.png");
+        
 
         // TODO 4: Write a for-loop to instantiate 5 Enemy objects at different 
         //         starting Y-coordinates and add them to activeObjects.
@@ -54,6 +58,13 @@ public class MyGame extends ApplicationAdapter {
         
         //Note: Anything drawn must be between .begin() and .end()
         batch.begin();
+        for(int i = 0; i<800;i+=200){
+            for(int j = 0; j<800;j+=200){
+                batch.draw(china, i, j);
+            }
+        }
+        
+
         // TODO 6: Write a loop to iterate through activeObjects and call draw(batch).
         for(GameObject game : activeObjects){
             game.draw(batch);
@@ -77,7 +88,7 @@ public class MyGame extends ApplicationAdapter {
                         if(activeObjects.get(i).getDistance(activeObjects.get(b))<200){
                             if(activeObjects.get(b).getAgro()){
                                 activeObjects.get(i).setTime(activeObjects.get(i).getTime()+1);
-                                if(activeObjects.get(i).getTime() == 100 ){
+                                if(activeObjects.get(i).getTime() == 120 ){
                                     activeObjects.get(i).setAgro(true);
                                     activeObjects.get(i).setTime(0);
                                 }

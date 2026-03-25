@@ -1,5 +1,7 @@
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.graphics.Color;
+
 import java.util.concurrent.TimeUnit;
 public class Launcher
 {
@@ -18,6 +20,9 @@ public class Launcher
 
         //Set window size
         configuration.setWindowedMode(800, 800);
+    
+
+    
 
         //Set window icon
         configuration.setWindowIcon("assets/libgdx128.png", "assets/libgdx64.png", "assets/libgdx32.png", "assets/libgdx16.png");

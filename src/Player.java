@@ -1,5 +1,6 @@
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.MathUtils;
 
 public class Player extends GameObject {
 
@@ -20,7 +21,7 @@ public class Player extends GameObject {
         } if (Gdx.input.isKeyPressed(Input.Keys.S)){
             setY(getY() - (speed * deltaTime));
         }
-
+       
     }
 
 }
