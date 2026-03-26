@@ -19,7 +19,7 @@ public class Player extends GameObject {
         } if (Gdx.input.isKeyPressed(Input.Keys.W)){
             setY(getY() + (speed * deltaTime));
         } if (Gdx.input.isKeyPressed(Input.Keys.S)){
-            setY(getY() - (speed * deltaTime));
+            setY(getY() - (speed * deltaTime));;;;;;;;;;
         }
        
     }
