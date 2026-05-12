@@ -28,7 +28,7 @@ public class MyGame extends ApplicationAdapter {
         // TODO 4: Write a for-loop to instantiate 5 Enemy objects at different 
         //         starting Y-coordinates and add them to activeObjects.
         int startingY = 100;
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 10; i++){
             activeObjects.add(new Enemy((int)(Math.random()*800), (int)(Math.random()*800), 50, 50, "assets\\dot.png"));
         }
     }

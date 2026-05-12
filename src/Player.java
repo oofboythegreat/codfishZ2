@@ -10,6 +10,8 @@ public class Player extends GameObject {
         super(x, y, 50, 50, "assets\\fish.png");
     }
 
+// ad sprites so that the player can rotate, frames per rotation, arrow keys to shot/ rotate
+
     @Override
     public void move(double deltaTime){
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
