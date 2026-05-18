@@ -1,7 +1,9 @@
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +14,10 @@ public class MyGame extends ApplicationAdapter {
     private ArrayList<GameObject> activeObjects;
     private Player player;
     private Texture china;
+    private Music suprise;
+    private int score;
+    private BitmapFont font;
+    
 
     @Override
     public void create() {
@@ -21,11 +27,13 @@ public class MyGame extends ApplicationAdapter {
         // TODO 3: Instantiate your Player subclass and add it to activeObjects.
 
         player = new Player(0, 0);
+        suprise = Gdx.audio.newMusic(Gdx.files.internal("assets/suprise.mp3"));
         activeObjects.add(player);
         Objective chud = new Objective((int)(Math.random()*800), (int)(Math.random()*800));
         activeObjects.add(chud);
         china = new Texture("assets\\china.png");
-        
+        font = new BitmapFont();
+        score = 0;
 
         // TODO 4: Write a for-loop to instantiate 5 Enemy objects at different 
         //         starting Y-coordinates and add them to activeObjects.
@@ -39,11 +47,13 @@ public class MyGame extends ApplicationAdapter {
 
     @Override
     public void render() {
-    
+        suprise.play();
+        suprise.setLooping(true);
+        suprise.setVolume(1.0f);
         // Boilerplate: Clear the screen to black each frame
         Gdx.gl.glClearColor(.25f, .25f, .25f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        
         // --- AP REVIEW: CASTING ---
         // Gdx.graphics.getDeltaTime() returns a float. 
         // We cast it to a double to stay strictly within the AP CSA Java standards.
@@ -56,7 +66,7 @@ public class MyGame extends ApplicationAdapter {
         for(GameObject game : activeObjects){
             game.move(deltaTime);
         }
-
+        
         
         //Note: Anything drawn must be between .begin() and .end()
         batch.begin();
@@ -71,7 +81,7 @@ public class MyGame extends ApplicationAdapter {
         for(GameObject game : activeObjects){
             game.draw(batch);
         }
-
+        font.draw(batch, "Score: " + score, 400, 400);
 
         batch.end();
 
@@ -100,12 +110,17 @@ public class MyGame extends ApplicationAdapter {
                 }
                 if(player.getHibox().overlaps(activeObjects.get(i).getHibox())){
                     activeObjects.remove(i);
+                    score--;
                     activeObjects.add(new Enemy((int)(Math.random()*800), (int)(Math.random()*800), 50, 50, "assets\\dot.png"));
                 } 
             }
-           // if(){
-
-           // }
+            if((activeObjects.get(i) instanceof Objective)){
+                if(player.getHibox().overlaps(activeObjects.get(i).getHibox())){
+                    activeObjects.remove(i);
+                    score++;
+                    activeObjects.add(new Objective((int)(Math.random()*800), (int)(Math.random()*800)));
+                } 
+            }
         }
 
     }
@@ -113,5 +128,6 @@ public class MyGame extends ApplicationAdapter {
     @Override
     public void dispose() {
         batch.dispose();
+        suprise.dispose();
     }
 }
